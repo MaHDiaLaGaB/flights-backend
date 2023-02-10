@@ -1,16 +1,10 @@
-from pydantic import BaseModel
+from schemas import ApiBase
 
 
-class UserBase(BaseModel):
+class UserBase(ApiBase):
     email: str
     username: str
-
-    class Config:
-        orm_mode = True
 
 
 class User(UserBase):
     is_active: bool
-
-    class Config:
-        orm_mode = True

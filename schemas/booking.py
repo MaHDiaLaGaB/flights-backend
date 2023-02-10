@@ -1,15 +1,15 @@
-from pydantic import BaseConfig
+from schemas import ApiBase
 from datetime import datetime
 from typing import Union
 
 
-class FlightBase(BaseConfig):
+class FlightBase(ApiBase):
     from_city: str
     to_city: str
+    date: datetime
 
 
 class FlightSearch(FlightBase):
-    date: datetime
     adults: int
     one_way: bool | False
 

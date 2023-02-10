@@ -1,4 +1,4 @@
-from amadeus import Client, ResponseError
+from amadeus import Client
 from amadeus.client.errors import AuthenticationError
 from config import Config
 import logging

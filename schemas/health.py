@@ -1,6 +1,6 @@
-from pydantic import BaseModel
+from schemas import ApiBase
 
 
-class Health(BaseModel):
+class Health(ApiBase):
     status: str
     description: str
