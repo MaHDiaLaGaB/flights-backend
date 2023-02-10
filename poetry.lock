@@ -1,4 +1,15 @@
 [[package]]
+name = "airportsdata"
+version = "20221121"
+description = "Extensive database of location and timezone data for nearly every airport and landing strip in the world."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.extras]
+testing = ["backports.zoneinfo", "pytest", "pytest-cov", "tzdata"]
+
+[[package]]
 name = "alembic"
 version = "1.9.3"
 description = "A database migration tool for SQLAlchemy."
@@ -522,9 +533,13 @@ standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)",
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "f62c3cbe9c569cbf68d25cc5925b3d9eff5971712760428bc7eafa03973785a1"
+content-hash = "7b6372912a12422ce2700ab97b146410c1b632d7b5e0db29934fbaddd993ef8b"
 
 [metadata.files]
+airportsdata = [
+    {file = "airportsdata-20221121-py3-none-any.whl", hash = "sha256:f1da691afa077b2d3c39ce4c6ab8f5b3d9d739df4184f90fe0fdcc027bd6902a"},
+    {file = "airportsdata-20221121.tar.gz", hash = "sha256:e1e23d291b56f15322176a1c801d5d32b327060c340a319eba7d52d18cbcff34"},
+]
 alembic = [
     {file = "alembic-1.9.3-py3-none-any.whl", hash = "sha256:ed2f73ea9c986f43af8ad7502c5f60d6bb1400bcd6d29f230e760e08884cb476"},
     {file = "alembic-1.9.3.tar.gz", hash = "sha256:8fd6aaea56f5a703a190d25a705dfa91d7c313bb71de2f9c68f5abdcaf5df164"},

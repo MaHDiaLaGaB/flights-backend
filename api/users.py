@@ -27,7 +27,7 @@ def read_users(*, user_id: int) -> User:
 
 
 @route.delete(USER, response_model=None, status_code=status.HTTP_204_NO_CONTENT)
-def delete_user(*, user_id: int, user_email: str):
+def delete_user(*, user_id: int, user_email: str) -> None:
     db_user = db.get_user_by_id(user_id)
     if db_user is None:
         raise NotFound(description="no user")

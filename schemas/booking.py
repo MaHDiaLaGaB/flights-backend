@@ -1,4 +1,4 @@
-from schemas import ApiBase
+from .base import ApiBase
 from datetime import datetime
 from typing import Union
 
@@ -11,6 +11,4 @@ class FlightBase(ApiBase):
 
 class FlightSearch(FlightBase):
     adults: int
-    one_way: bool | False
-
-
+    one_way: bool = False

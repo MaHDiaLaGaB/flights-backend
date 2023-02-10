@@ -1,4 +1,4 @@
-from schemas import ApiBase
+from .base import ApiBase
 
 
 class Health(ApiBase):

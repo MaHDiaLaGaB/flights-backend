@@ -13,7 +13,3 @@ def test_create_user(client: TestClient, user_1: User, database: DB) -> None:
     assert resp.status_code == HTTPStatus.CREATED
     get_user = database.get_user_by_email(user_1["email"])
     assert get_user.__str__() == user["email"]
-
-
-def test_delete_user(client: TestClient, database: DB, user_2: User):
-    pass

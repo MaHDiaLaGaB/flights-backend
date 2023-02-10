@@ -88,7 +88,7 @@ class DB:
 
         user = self.get_user_by_id(user_id)
         if user.email != email:
-            raise ObjectNotFound()
+            raise ObjectNotFound(user)
 
         self.db_session.query(User).filter(
             (func.lower(User.email == email.lower()))
