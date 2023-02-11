@@ -5,9 +5,8 @@ from typing import cast
 
 
 class Config(BaseConfig):
-    NAME = "mocks"
+    NAME = "Nomads_flights"
     API_PORT = 7500
-    SQLALCHEMY_DATABASE_DEV_URI: str = "sqlite:///flightsDB.db"
     AMADEUS_API_KEY: str = ""
     AMADEUS_API_SECRETS: str = ""
 

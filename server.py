@@ -1,12 +1,11 @@
 from fastapi import FastAPI
-from api import health, users, booking
+from api import health, booking
 from config import Config
 import uvicorn
 
 
 app = FastAPI(docs_url="/")
 app.include_router(health.route)
-app.include_router(users.route)
 app.include_router(booking.route)
 
 
