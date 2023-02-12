@@ -15,7 +15,8 @@
 .idea
 __pycache__/
 __pycache__
-*/__pycache__
+schemas/__pycache__
+api/__pychache__
 # AWS User-specific
 .idea/**/aws.xml
 
