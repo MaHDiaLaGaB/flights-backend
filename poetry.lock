@@ -1,15 +1,4 @@
 [[package]]
-name = "airportsdata"
-version = "20221121"
-description = "Extensive database of location and timezone data for nearly every airport and landing strip in the world."
-category = "main"
-optional = false
-python-versions = ">=3.8"
-
-[package.extras]
-testing = ["backports.zoneinfo", "pytest", "pytest-cov", "tzdata"]
-
-[[package]]
 name = "amadeus"
 version = "8.0.0"
 description = "Python module for the Amadeus travel APIs"
@@ -447,13 +436,9 @@ standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)",
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "a697dbdb0c30dec948149b91e3b1d9af35c72c1d7ba66b90dae37fb0dc0a0f0a"
+content-hash = "e07a26471e4de0636204a3a9b071509da1f1b2d65962adeb0dc4e562eb873e37"
 
 [metadata.files]
-airportsdata = [
-    {file = "airportsdata-20221121-py3-none-any.whl", hash = "sha256:f1da691afa077b2d3c39ce4c6ab8f5b3d9d739df4184f90fe0fdcc027bd6902a"},
-    {file = "airportsdata-20221121.tar.gz", hash = "sha256:e1e23d291b56f15322176a1c801d5d32b327060c340a319eba7d52d18cbcff34"},
-]
 amadeus = [
     {file = "amadeus-8.0.0.tar.gz", hash = "sha256:9cc04eb479fd011197c89217a7e9fd069e74c39dfad0a95e6cbf3093331fc4e6"},
 ]
