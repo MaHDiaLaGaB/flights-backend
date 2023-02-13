@@ -1,21 +1,21 @@
-from fastapi import APIRouter, HTTPException, status, Depends, Response
-from clients.amadues_client import AmadeusClient
-from amadeus import ResponseError
-from .routes import SEARCH
-
+from fastapi import APIRouter, status, Depends, Body
+from typing import Any
+from .routes import SEARCH, CITY
+from schemas import FlightBase
+import logging
+from services.booking_repo import Flights
 
 route = APIRouter(tags=["booking"])
 
 
-@route.get(SEARCH, status_code=status.HTTP_200_OK)
-def search_flight(*, amc: AmadeusClient = Depends(AmadeusClient)) -> Response:
-    try:
-        resp = amc.amadeus.shopping.flight_offers_search.get(
-            originLocationCode="MAD",
-            destinationLocationCode="ATH",
-            departureDate="2023-04-01",
-            adults=1,
-        )
-        return Response(resp.data)
-    except ResponseError as e:
-        raise HTTPException(detail=e, status_code=status.HTTP_400_BAD_REQUEST)
+@route.post(SEARCH, status_code=status.HTTP_201_CREATED)
+def search_flight(*, flights: Flights = Depends(), fly: FlightBase = Body()) -> Any:
+    logging.info(f"searching for flights from {fly.from_city} to {fly.to_city}")
+    res = flights.flight_search(flight=fly)
+    return res
+
+
+@route.post(CITY, status_code=status.HTTP_201_CREATED)
+def search_city(*, flights: Flights = Depends(), city_nam: str) -> Any:
+    res = flights.city_search(city_nam)
+    return res
