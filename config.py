@@ -6,6 +6,7 @@ from typing import cast
 
 class Config(BaseConfig):
     NAME = "Nomads_flights"
+    ENV = "dev"
     API_PORT = 7500
     AMADEUS_API_KEY: str = ""
     AMADEUS_API_SECRETS: str = ""
