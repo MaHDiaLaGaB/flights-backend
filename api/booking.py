@@ -1,5 +1,5 @@
 from fastapi import APIRouter, status, Depends, Body
-from typing import List, Any
+from typing import Any
 from .routes import SEARCH, CITY
 from schemas import FlightBase
 import logging
