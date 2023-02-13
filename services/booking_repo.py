@@ -1,8 +1,6 @@
 from clients.amadues_client import AmadeusClient
-from fastapi import HTTPException
-from http import HTTPStatus
-from schemas import FlightBase, ListOfAirPorts, CityName
-from amadeus import ResponseError
+from schemas import FlightBase
+from amadeus import ResponseError, Location
 
 
 class Flights:
@@ -10,19 +8,24 @@ class Flights:
         self.amc = AmadeusClient()
 
     def flight_search(self, flight: FlightBase):
+
         try:
             resp = self.amc.amadeus.shopping.flight_offers_search.get(originLocationCode=flight.from_city,
                                                                       destinationLocationCode=flight.to_city,
                                                                       departureDate=flight.departure_date,
                                                                       adults=flight.adults)
-            return resp.data
-        except ResponseError as e:
-            raise HTTPException(detail=e, status_code=HTTPStatus.BAD_REQUEST)
 
-    def city_search(self, city_name: CityName):
+            #  return the first four flights
+            return resp.data[:4]
+        except ResponseError as error:
+            raise error
+
+    def city_search(self, city_name: str):
+        city_name = city_name.title()
         try:
-            resp = self.amc.amadeus.reference_data.locations.cities.get(keyword=city_name)
+            resp = self.amc.amadeus.reference_data.locations.get(keyword=city_name, subType=Location.ANY)
+
             return resp.data
 
-        except ResponseError as e:
-            raise HTTPException(detail=e, status_code=HTTPStatus.BAD_REQUEST)
+        except ResponseError as error:
+            raise error

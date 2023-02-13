@@ -1,18 +1,20 @@
-from fastapi import APIRouter, status, Depends, Body
-from .routes import SEARCH
-from schemas import FlightBase, ListOfAirPorts, CityName
-from utils.booking_repo import Flights
+from fastapi import APIRouter, status, Depends, Body, HTTPException
+from .routes import SEARCH, CITY
+from schemas import FlightBase
+import logging
+from services.booking_repo import Flights
 
 route = APIRouter(tags=["booking"])
 
 
 @route.post(SEARCH, status_code=status.HTTP_201_CREATED)
 def search_flight(*, flights: Flights = Depends(), fly: FlightBase = Body()):
+    logging.info(f"searching for flights from {fly.from_city} to {fly.to_city}")
     res = flights.flight_search(flight=fly)
     return res
 
 
-@route.post("/booking/city/", status_code=status.HTTP_201_CREATED, response_model=ListOfAirPorts)
-def search_flight(*, flights: Flights = Depends(), city_name: CityName):
-    res = flights.city_search(city_name)
+@route.post(CITY, status_code=status.HTTP_201_CREATED)
+def search_flight(*, flights: Flights = Depends(), city_nam: str):
+    res = flights.city_search(city_nam)
     return res

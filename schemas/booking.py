@@ -41,6 +41,7 @@ class CitysAirPorts(ApiBase):
     address: Union[Address, None]
     geo_address: Union[GeoCode, None]
 
+
 #  TODO i need to fix this
 class ListOfAirPorts(CitysAirPorts):
     list_of_ports: List[CitysAirPorts]
