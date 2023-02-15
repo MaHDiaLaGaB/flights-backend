@@ -44,3 +44,14 @@ class ObjectNotFound(AppException):
             self.description: Optional[
                 str
             ] = f"Requested object with id '{object_id}' not found"
+
+
+@register_exception
+class DocumentRendererServiceException(AppException):
+    category_code: int = ExceptionCategory.DOCUMENT_RENDERER_SERVICE
+    exception_code: int = 1
+
+
+@register_exception
+class DocumentProcessorServiceException(DocumentRendererServiceException):
+    exception_code: int = 2

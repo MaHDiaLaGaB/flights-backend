@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from api import health, booking
+from api import health, booking, documents
 from config import Config
 import uvicorn
 
@@ -7,6 +7,7 @@ import uvicorn
 app = FastAPI(docs_url="/")
 app.include_router(health.route)
 app.include_router(booking.route)
+app.include_router(documents.route)
 
 
 if __name__ == "__main__":

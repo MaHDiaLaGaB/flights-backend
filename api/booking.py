@@ -3,7 +3,7 @@ from typing import Any
 from .routes import SEARCH, CITY
 from schemas import FlightBase
 import logging
-from services.booking_repo import Flights
+from services.booking_service import Flights
 
 route = APIRouter(tags=["booking"])
 
