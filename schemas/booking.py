@@ -1,47 +1,31 @@
 from .base import ApiBase
+from typing import List, Optional, Dict
+from pydantic import Field, root_validator, BaseModel
 
-from typing import Union, List
 
-
-class FlightBase(ApiBase):
+class FlightBase(BaseModel):
     from_city: str
     to_city: str
     departure_date: str
+    return_date: Optional[str]
     adults: int
+    one_way: bool
+
+    @root_validator
+    def set_return_date(cls, values: Dict[str, str]) -> Dict[str, str]:
+        if not values["one_way"]:
+            if "return_date" not in values or not values["return_date"]:
+                raise ValueError("return_date is required for round-trip flights")
+        return values
 
 
-class FlightSearch(FlightBase):
-    one_way: bool = False
-
-
-class BookMock(FlightSearch):
-    name: str
-    passport: str
-
-
-class CityName(ApiBase):
-    city_name: str
-
-
-class Address(ApiBase):
-    countryCode: str
-    stateCode: str
-
-
-class GeoCode(ApiBase):
-    latitude: float
-    longitude: float
-
-
-class CitysAirPorts(ApiBase):
-    type: str
-    subType: str
-    name: str
-    iataCode: str
-    address: Union[Address, None]
-    geo_address: Union[GeoCode, None]
-
-
-#  TODO i need to fix this
-class ListOfAirPorts(CitysAirPorts):
-    list_of_ports: List[CitysAirPorts]
+class FlightResponse(ApiBase):
+    id: int
+    departure: str
+    arrival: str
+    airline: str
+    flight_number: str
+    departure_time: str
+    arrival_time: str
+    duration: str
+    price: float

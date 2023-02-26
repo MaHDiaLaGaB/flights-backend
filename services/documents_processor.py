@@ -13,7 +13,7 @@ from my_typing import CompletedProcessAny
 class WordDocumentProcessor:
     @staticmethod
     def replace_placeholders(
-        src_path: str, dst_path: str, placeholder_values: Dict[str, str] = None
+        src_path: str, dst_path: str, placeholder_values: Dict[str, str] | None
     ) -> Tuple[List[str], List[str]]:
         if placeholder_values is None:
             placeholder_values = {}
@@ -73,7 +73,7 @@ class WordDocumentProcessor:
 
             except subprocess.CalledProcessError as exc:
                 logging.error(f"Failed to export pdf: {exc}")
-                raise DocumentProcessorServiceException(str(exception)) from exc
+                raise DocumentProcessorServiceException(str(exc)) from exc
 
         print(f"Exporting {src_path} to {dst_path}")
 

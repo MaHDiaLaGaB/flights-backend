@@ -1,7 +1,7 @@
 import json
 import os
 import logging
-from typing import List, Union, Dict
+from typing import Any
 from fastapi import APIRouter, status
 from fastapi.exceptions import HTTPException
 from fastapi.responses import FileResponse
@@ -25,7 +25,7 @@ route = APIRouter(tags=["document"])
 
 #  i didn't test it yet
 @route.post(RENDER_FILE)
-def file_render(*, ph: str, background_task: BackgroundTasks):
+def file_render(*, ph: str, background_task: BackgroundTasks) -> Any:
     parsed_ph = json.loads(ph)
     output_file_name = generate_file_name(OUTPUT_NAME_PREFIX, OUTPUT_EXTENSION)
 

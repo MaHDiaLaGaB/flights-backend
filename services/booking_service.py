@@ -12,16 +12,17 @@ class Flights:
 
     def flight_search(self, flight: FlightBase) -> Any:
         try:
+            params = {
+                "originLocationCode": flight.from_city,
+                "destinationLocationCode": flight.to_city,
+                "departureDate": flight.departure_date,
+                "adults": flight.adults,
+            }
             logging.info("searching for flights ...")
-            resp = self.amc.amadeus.shopping.flight_offers_search.get(
-                originLocationCode=flight.from_city,
-                destinationLocationCode=flight.to_city,
-                departureDate=flight.departure_date,
-                adults=flight.adults,
-            )
+            resp = self.amc.amadeus.shopping.flight_offers_search.get(**params)
 
             #  return the first four flights
-            return resp.data[:4]
+            return resp.data
         except ResponseError as error:
             raise error
 
