@@ -4,6 +4,7 @@ from clients.amadues_client import AmadeusClient
 from schemas import FlightBase
 from amadeus import ResponseError, Location
 from typing import Any
+from utils.doc_utils import find_by_city_name, find_by_airport_name
 
 
 class Flights:
@@ -12,6 +13,8 @@ class Flights:
 
     def flight_search(self, flight: FlightBase) -> Any:
         try:
+            flight.from_city = find_by_city_name(flight.from_city)
+            flight.to_city = find_by_city_name(flight.to_city)
             params = {
                 "originLocationCode": flight.from_city,
                 "destinationLocationCode": flight.to_city,
